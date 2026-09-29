@@ -1,0 +1,62 @@
+conceitos importantes
+-> composição : quando o objeto filho não faz sentido fora do objeto pai
+-> agregação: quando o objeto filho existe sem o objeto pai, mas agrega informações a ele
+-> dependencia: 
+
+Factory Method
+basicamente, duas interfaces ou classes abstratas. CRIADOR e PRODUTO
+
+-> o PRODUTO declara a interface que é comum aos objetos que podem ser produzidos, pelo
+CRIADOR  e suas subclasses
+-> a classe CRIADOR declara o método FÁBRICA, que retorna novos objetos PRODUTOS, ou 
+seja, o tipo de retorno do método fábrica precisa ser do tipo Produto.
+-> as subclasses do CRIADOR sobrescrevem o método fábrica, retornando diferentes PRODUTOS.
+
+
+Abstract Method
+basicamente, uma interface (fabrica abs) com uma lista de métodos de criação de produtos,
+onde seus tipos de retorno são as interfaces de produto propriamente ditas.
+
+quando usar:
+1. quando seu código possui uma família de produtos relacionados, como Cadeira + Sofá
++ Mesa
+2. várias variantes dessa família, os produtos estão disponíveis em: Moderno, Vitoriano,
+ ArtDeco
+
+o que fazer
+ -> declarar explicitamente interfaces para cada produto distinto da família de produtos,
+ então, você pode fazer todas as variantes dos produtos seguirem essas interfaces. 
+ exemplo: todas as variantes de cadeira podem implementar a interface Cadeira:
+ VictorianChair, ModernChair..
+
+ -> declarar a fábrica abstrata - interface com uma lista de métodos de criação para todos
+ os produtos que fazem parte da familia de produtos. 
+ exemplo: criarCadeira, criarSofá, criarMesa
+ esses métodos devem retornar tipos *abstratos* de produtos representados pelas interfaces
+ Cadeira, Sofá, Mesa
+
+ -> para cada variante de uma família de produtos, nós criamos uma classe fábrica separada
+ baseada na interface absFabrica. uma fábrica concreta é uma classe que retorna produtos
+ de um tipos em particular. 
+ exemplo: a classe FabricaModern só pode criar objetos ModernChair, ModernTable e
+  ModernSofa
+ 
+ -> os produtos abstratos e concretos ficam responsáveis por comportamentos específicos
+ /requisitados por exercícios
+
+
+Observer
+mecanismo de assinatura pra notificar múltiplos objetos sobre quaisquer eventos que aconteçam
+com o objeto que eles estão observando.
+o observado notifica outros objetos sobre as mudanças no seu estado
+
+1- identificar quem é o observador, será a funcionalidade principal, independente de outros códigos
+2- declare a interface do observador. o observador não pode existir sem o observado, então voce 
+declara o observado do tipo absObservado, e o método update do observador.
+3- declare a interface do observado. declare o par de métodos inscrever e remover. declare
+a lista dos observadores 
+4- crie o observado concreto. defina o estado, e faça um setState, para notificar todos os observadores
+quando algo ocorrer. crie tambem a função de notificar. implemente o corpo dos metodos da lista de
+ observadores NO OBSERVADO concreto, que extende
+o observado abstrato.
+5- implemente o método update na classe do observador concreta. 
