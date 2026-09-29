@@ -10,6 +10,7 @@ public class FabricaAlemanha implements absFabrica{
         this.vatID = vatID;
         this.plz = plz;
     }
+    
     @Override
     public Documento criarDocumento(){
         return new VATInvoice(produto_essencial, vatID);
